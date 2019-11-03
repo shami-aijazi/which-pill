@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1>{{ the_title }}</h1>
+
+<img alt="Photo: Pills" src="{{ url_for('static', filename='images/pills.jpg') }}">
+
+<ul>
+  <li><a href="{{ url_for('index') }}">Home page</a></li>
+</ul>
+
+<h2>Select a file to upload</h2>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+<form method="post" action="identifier" enctype="multipart/form-data">
+    <dl>
+		<p>
+			<input type="file" name="file" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Submit">
+	</p>
+</form>
+
+
+
+
+{% endblock %}
